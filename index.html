@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ProfitX - Home</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+</head>
+
+
+
+<body>
+
+  <div id="loadingScreen">
+    <div class="spinner"></div>
+    <p>Loading data...</p>
+  </div>
+
+  <div class="container">
+    <header>
+      <div class="header-left">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/money-box.png" alt="ProfitX Logo" class="logo-img" />
+        <span class="brand-name">ProfitX</span>
+      </div>
+      <div class="header-right">
+        <img src="https://i.pravatar.cc/40" alt="Profile" class="profile-img" />
+      </div>
+    </header>
+
+    <div class="card">
+      <h2 class="section-title"><i class="fas fa-money-check icon"></i>Cash Flow</h2>
+      <div class="time-display">
+        <i class="fas fa-clock"></i>
+        <div>Today</div>
+        <div id="datetimeBox">
+          Time: <span id="clock">00:00:00</span> | Date: <span id="dateNow">00/00/0000</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="summary-box"><i class="fas fa-hand-holding-usd"></i> Profit: <span id="profit">₹0</span></div>
+        <div class="summary-box"><i class="fas fa-piggy-bank"></i> Investment: <span id="investment">₹0</span></div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="section-title"><i class="fas fa-chart-line icon"></i>Monthly Income</h2>
+      <h3 id="monthHeader"></h3>
+      <div><strong>₹<span id="monthlyProfit">0</span></strong> profit</div>
+      <canvas id="profitChart"></canvas>
+    </div>
+
+    <div class="card">
+      <h2 class="section-title">Data by Month & Year</h2>
+      <div class="filter-section">
+        <label for="monthFilter">Month:</label>
+        <select id="monthFilter" class="edit-input">
+          <option value="">All</option>
+          <option value="0">Jan</option>
+          <option value="1">Feb</option>
+          <option value="2">Mar</option>
+          <option value="3">Apr</option>
+          <option value="4">May</option>
+          <option value="5">Jun</option>
+          <option value="6">Jul</option>
+          <option value="7">Aug</option>
+          <option value="8">Sep</option>
+          <option value="9">Oct</option>
+          <option value="10">Nov</option>
+          <option value="11">Dec</option>
+        </select>
+
+        <label for="yearFilter">Year:</label>
+        <select id="yearFilter" class="edit-input">
+          <option value="">All</option>
+        </select>
+
+        <script>
+          const yearSelect = document.getElementById('yearFilter');
+          const currentYear = new Date().getFullYear();
+
+          // Add options for the current year and previous 2 years (3 years total)
+          for (let y = currentYear; y >= currentYear - 2; y--) {
+            const option = document.createElement('option');
+            option.value = y;
+            option.textContent = y;
+            yearSelect.appendChild(option);
+          }
+        </script>
+
+        <button onclick="applyFilter()" class="filter-btn"><i class="fas fa-filter icon"></i></button>
+      </div>
+    
+
+    <!-- Total Investment Card -->
+    <div class="card">
+      <h2 class="section-title"><i class="fas fa-coins icon"></i>Total Investment</h2>
+      <div class="summary-box">
+        <i class="fas fa-chart-pie"></i> Total Invested: <strong id="totalInvested">₹0</strong>
+      </div>
+    </div>
+
+    <!-- Total Income Card -->
+    <div class="card">
+      <h2 class="section-title"><i class="fas fa-wallet icon"></i>Total Income</h2>
+      <div class="row">
+        <div class="summary-box"><i class="fas fa-money-bill-wave"></i> Cash: <span id="totalCash">₹0</span></div>
+        <div class="summary-box"><i class="fab fa-google-pay"></i> GPay: <span id="totalGpay">₹0</span></div>
+      </div>
+      <div class="summary-box" style="margin-top: 20px;"><i class="fas fa-sack-dollar"></i> Total: <strong
+          id="totalIncome">₹0</strong></div>
+    </div>
+  </div>
+
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="active"><i class="fas fa-home"></i>Home</a>
+    <a href="data.html"><i class="fas fa-database"></i>Data</a>
+  </nav>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
